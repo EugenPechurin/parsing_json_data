@@ -22,7 +22,7 @@ from parsing_json import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^graph/(?P<region>[\w\s]+)/$', views.graph, name='graph'),
+    url(r'^graph/(?P<region>[\w\s-]+)/$', views.graph, name='graph'),
     url(r'^graph/$', views.graph, name='graph'),
     url(r'^delete_data/$', views.delete_data, name='delete_data'),
     url(r'^', views.parsing_json, name='parsing_json')
