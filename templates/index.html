@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    {% load static %}
+{% endblock %}
+{% block content %}
+
+    <div class="text-center">
+        <form id="form1" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4 class="text-center" >Add JSON file</h4>
+            <label class="btn btn-primary">
+                Browse&hellip; <input type="file" name="file" accept=".json" style="display: none;">
+            </label>
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#processing-modal">Submit</button>
+        </form>
+        <br>
+        <a href="/delete_data/">Clear data</a>
+        <br>
+        <a href="/graph/">Graph</a>
+    </div>
+
+    <!-- Static Modal Waiting dialog -->
+    <div class="modal modal-static fade" id="processing-modal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img src="http://www.travislayne.com/images/loading.gif" class="icon" />
+                        <h4>Processing... </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

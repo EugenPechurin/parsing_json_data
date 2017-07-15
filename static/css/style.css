@@ -1,0 +1,56 @@
+.container {
+    margin-top: 20px;
+}
+
+.modal-static {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    margin-top: -100px;
+    margin-left: -100px;
+    overflow: visible !important;
+}
+
+.modal-static,
+.modal-static .modal-dialog,
+.modal-static .modal-content {
+    width: 200px;
+    height: 200px;
+}
+
+.modal-static .modal-dialog,
+.modal-static .modal-content {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.modal-static .modal-content .icon {
+}
+
+.modal-backdrop {
+    height: 1000px;
+}
+
+.head {
+    color: #222222;
+}
+
+.head:link {
+    text-decoration: none;
+    color: #696969;
+}
+
+.headr:visited {
+    text-decoration: none;
+    color: #696969;
+}
+
+.head:hover {
+    text-decoration: none;
+    color: #696969;
+}
+
+.head:active {
+    text-decoration: none;
+    color: #696969;
+}

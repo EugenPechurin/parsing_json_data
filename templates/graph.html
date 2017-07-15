@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+    {% block scripts %}
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="https://cdn.anychart.com/js/7.14.0/anychart-bundle.min.js"></script>
+    {% endblock %}
+    {% block style %}
+        <link rel="stylesheet" href="https://cdn.anychart.com/css/7.14.0/anychart-ui.min.css"/>
+        <style>
+            html, body, #container {
+                width: 100%;
+                height: 85%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    {% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="dropdown">
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+            Выберите область
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-center">
+            {% for obj in regions %}
+                <li>
+                    <a href="/graph/{{ obj.region }}/">{{ obj.region }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    </div>
+<div id="container"></div>
+<script type="text/javascript">
+    anychart.onDocumentReady(function() {
+        // create column chart
+        chart = anychart.column3d();
+
+        // turn on chart animation
+        chart.animation(true);
+
+        // set chart title text settings
+        chart.title('{{ region }}');
+
+        // create area series with passed data
+        chart.column([
+            {% for city in citys %}
+            ['{{ city.city }}', '{{ city.value }}'],
+            {% endfor %}
+        ]);
+
+        chart.tooltip()
+            .position('top')
+            .anchor('bottom')
+            .offsetX(0)
+            .offsetY(5)
+            .format('₴{%Value}');
+
+        // set scale minimum
+        chart.yScale().minimum(0);
+
+        // set yAxis labels formatter
+        chart.yAxis().labels().format('{%Value}{groupsSeparator: }');
+
+        chart.tooltip().positionMode('point');
+        chart.interactivity().hoverMode('byX');
+
+        chart.xAxis().title('Products by Evgen Pechurin');
+        chart.yAxis().title('Значения');
+
+        // set container id for the chart
+        chart.container('container');
+
+        // initiate chart drawing
+        chart.draw();
+    });
+</script>
+{% endblock %}
+

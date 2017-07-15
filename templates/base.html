@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Parsing{% endblock %}</title>
+    {% load static %}
+    <link href={% static "/css/bootstrap.css" %} type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+    <link href={% static "/css/style.css" %} type="text/css" rel="stylesheet">
+    {% block scripts %}{% endblock %}
+    {% block style %}{% endblock %}
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron">
+                <h1 class="text-center"><a class="head" href="/">Parsing JSON file</a></h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% block content %}{% endblock %}
+
+</body>
+</html>
